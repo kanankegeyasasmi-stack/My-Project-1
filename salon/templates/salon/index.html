@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Valencia Salon</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{% static 'salon/css/style.css' %}" />
 </head>
 <body>
 
@@ -22,7 +23,7 @@
     </nav>
   </header>
 
-  <section class="hero" id="home" style="background: url(images/hero\ banner\ image.avif)" >
+  <section class="hero" id="home" style="background: url('{% static "salon/images/hero-banner-image.avif" %}') center/cover no-repeat;">
     <div class="hero-overlay">
       <div class="hero-content">
         <h1>Welcome to Valencia Salon</h1>
@@ -136,13 +137,27 @@
 
     <div class="contact-form-box">
       <h3>Book an Appointment</h3>
-      <form class="contact-form">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <input type="tel" placeholder="Your Phone Number" required />
-        <textarea placeholder="Your Message" rows="5" required></textarea>
-        <button type="submit" class="btn">Send Message</button>
-      </form>
+
+      {% if success %}
+  <p style="color: green; margin-bottom: 15px;">
+    Your appointment request has been sent successfully!
+  </p>
+{% endif %}
+
+      {% if success %}
+  <p style="color: green; margin-bottom: 15px;">
+    Your message has been sent successfully!
+  </p>
+{% endif %}
+
+<form class="contact-form" method="POST">
+  {% csrf_token %}
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <input type="tel" name="phone" placeholder="Your Phone Number" required />
+  <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+  <button type="submit" class="btn">Send Message</button>
+</form>
     </div>
 
   </div>
