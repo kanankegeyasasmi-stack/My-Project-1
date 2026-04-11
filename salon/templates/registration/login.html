@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'salon/css/style.css' %}">
+</head>
+<body>
+
+<h2 style="text-align:center; margin-top:50px;">Login</h2>
+
+<div style="max-width:400px; margin:auto;">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Login</button>
+    </form>
+</div>
+
+</body>
+</html>
