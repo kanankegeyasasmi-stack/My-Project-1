@@ -2,20 +2,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Login - Valencia Salon</title>
     <link rel="stylesheet" href="{% static 'salon/css/style.css' %}">
 </head>
 <body>
 
-<h2 style="text-align:center; margin-top:50px;">Login</h2>
+    <section class="contact" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div class="contact-form-box" style="max-width: 450px; width: 100%;">
+            <h3 style="text-align: center;">Login</h3>
+            <p style="text-align: center; margin-bottom: 20px; color: #666;">
+                Please log in to continue to your booking page.
+            </p>
 
-<div style="max-width:400px; margin:auto;">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn">Login</button>
-    </form>
-</div>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn" style="width: 100%;">Login</button>
+            </form>
+
+            <p style="text-align: center; margin-top: 20px; color: #666;">
+                Don’t have an account?
+                <a href="/signup/" style="color: #c86b85; text-decoration: none; font-weight: bold;">
+                    Create one here
+                </a>
+            </p>
+        </div>
+    </section>
 
 </body>
 </html>

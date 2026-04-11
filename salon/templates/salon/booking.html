@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Valencia Salon</title>
+    <link rel="stylesheet" href="{% static 'salon/css/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Valencia</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/booking/">Book Appointment</a></li>
+                <li>
+  <form action="/accounts/logout/" method="POST" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn" style="border: none; cursor: pointer;">Logout</button>
+  </form>
+</li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="contact" style="min-height: 80vh;">
+        <div class="contact-form-box" style="max-width: 600px; margin: auto;">
+            <h3>Book an Appointment</h3>
+
+            {% if success %}
+              <p style="color: green; margin-bottom: 15px;">
+                Your booking has been submitted successfully!
+              </p>
+            {% endif %}
+
+            <form class="contact-form" method="POST">
+                {% csrf_token %}
+
+                <select name="service" required>
+                    <option value="">Select a Service</option>
+                    <option value="Hair Styling">Hair Styling</option>
+                    <option value="Facials">Facials</option>
+                    <option value="Bridal Makeup">Bridal Makeup</option>
+                </select>
+
+                <input type="date" name="appointment_date" required>
+                <input type="time" name="appointment_time" required>
+                <textarea name="notes" placeholder="Additional Notes (Optional)" rows="5"></textarea>
+
+                <button type="submit" class="btn">Confirm Booking</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+</html>

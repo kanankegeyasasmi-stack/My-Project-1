@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from .models import ContactMessage
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import ContactMessage, Booking
 
 def home(request):
     success = False
@@ -21,8 +24,6 @@ def home(request):
 
     return render(request, 'salon/index.html', {'success': success})
 
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
 
 def signup(request):
     if request.method == 'POST':
@@ -34,3 +35,26 @@ def signup(request):
         form = UserCreationForm()
 
     return render(request, 'salon/signup.html', {'form': form})
+
+
+@login_required
+def booking_page(request):
+    success = False
+
+    if request.method == 'POST':
+        service = request.POST.get('service', '').strip()
+        appointment_date = request.POST.get('appointment_date', '').strip()
+        appointment_time = request.POST.get('appointment_time', '').strip()
+        notes = request.POST.get('notes', '').strip()
+
+        if service and appointment_date and appointment_time:
+            Booking.objects.create(
+                user=request.user,
+                service=service,
+                appointment_date=appointment_date,
+                appointment_time=appointment_time,
+                notes=notes
+            )
+            success = True
+
+    return render(request, 'salon/booking.html', {'success': success})
