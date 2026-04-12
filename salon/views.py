@@ -58,3 +58,6 @@ def booking_page(request):
             success = True
 
     return render(request, 'salon/booking.html', {'success': success})
+
+def gallery(request):
+    return render(request, 'salon/gallery.html')
