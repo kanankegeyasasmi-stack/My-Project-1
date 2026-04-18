@@ -61,3 +61,9 @@ def booking_page(request):
 
 def our_team(request):
     return render(request, 'salon/our_team.html')
+
+def about(request):
+    return render(request, 'salon/about.html')
+
+def help(request):
+    return render(request, 'salon/help.html')
