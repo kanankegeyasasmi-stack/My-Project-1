@@ -59,5 +59,5 @@ def booking_page(request):
 
     return render(request, 'salon/booking.html', {'success': success})
 
-def gallery(request):
-    return render(request, 'salon/gallery.html')
+def our_team(request):
+    return render(request, 'salon/our_team.html')
