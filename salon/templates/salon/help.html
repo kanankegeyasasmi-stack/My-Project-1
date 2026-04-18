@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Great+Vibes&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valencia Salon</title>
+  <link rel="stylesheet" href="{% static 'salon/css/help.css' %}" />
+</head>
+<body class = "background">
+
+  <header>
+    <nav class="navbar">
+      <div class="logo">Valencia</div>
+      <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About Us</a></li>
+        <li><a href="{% url 'our_team' %}">Our Team</a></li>
+        <li><a href="{% url 'help' %}">Support</a></li>
+        <li><a href="/booking/">Book Now</a></li>
+<li><a href="/accounts/login/">Login</a></li>
+      </ul>
+      <a href="" class="btn">Book Now</a>
+    </nav>
+  </header>
+</body>
+</html>
